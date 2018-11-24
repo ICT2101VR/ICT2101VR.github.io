@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICT2101-SafetyVR</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="set-image.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+				<!--first load background-->
+				<img id="road" crossorigin="anonymous" src="road.jpg">
+				
+				<!-- Vehicle -->
+				<a-asset-item id="shoes" src="images/shoes/scene.gltf"></a-asset-item>
+				<a-asset-item id="bicycle" src="images/Bicycle/scene.gltf"></a-asset-item>
+				<a-asset-item id="scoot" src="images/razor_scooter/scene.gltf"></a-asset-item>
+				<a-asset-item id="scooter" src="images/scooter/scene.gltf"></a-asset-item>
+				<a-asset-item id="bike" src="images/bike/scene.gltf"></a-asset-item>
+				<img id="sb" crossorigin="anonymous" src="images/score_level4.jpg">
+
+				<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+
+      </a-assets>
+
+			<!-- 360-degree image -->
+			<a-sky id="image-360" src="#road"></a-sky>
+			<a-text value="Choose a vehicle" geometry="primitive:plane;height:0.3;width:2" position="-0.17 0.7291700666566228 -1.655" text="width:3;align:center"></a-text>
+
+			<!--Vehicle Selection Menu-->
+			<a-entity gltf-model="#shoes" id="vehicleNone" position="-31.65 -13.9 -24.3" rotation="0.5 64.6 -8"></a-entity>
+			<a-text value="Walking" geometry="primitive:plane;height:0.3" position="-2.32 0.004 -1.66" text="width:3;align:center" rotation="0 50 0"></a-text>
+			<a-entity gltf-model="#bicycle" id="vehicle1" scale="0.01 0.007 0.01" position="-6.2 -3.8 -8.3" rotation="0 142 0"></a-entity>
+			<a-text value="Bicycle"  geometry="primitive:plane;height:0.3" position="-1.4 0 -2.08" text="width:3;align:center" rotation="0 13 0"></a-text>
+			<a-entity gltf-model="#scoot" id="vehicle2" scale="0.01 0.007 0.01" position="-0.05 -0.22 -0.45" rotation="0 -23.9 0"></a-entity>
+			<a-text value="Scooter" geometry="primitive:plane;height:0.3" position="-0.37 0 -2.27" text="width:3;align:center"></a-text>
+			<a-entity gltf-model="#scooter" id="vehicle3" scale="0.01 0.007 0.01" position="0.12 -0.14 -0.36" rotation="0 -114 0"></a-entity>
+			<a-text value="E-scooter" geometry="primitive:plane;height:0.3" position="0.75 0 -2.14" text="width:3;align:center" rotation="0 -20.6 0"></a-text>
+			<a-entity gltf-model="#bike" id="vehicle4" scale="0.024 0.022 0.015" position="0.3 -0.14 -0.3" rotation="0 -25.5 0"></a-entity>
+			<a-text value="E-bike" geometry="primitive:plane;height:0.3" position="1.7 0 -1.6" text="width:3;align:center" rotation="0 -37.7 0"></a-text>			
+			
+			<a-image id="sb" src="#sb" position="4.242795069500651 1.9516477798151202 -4.681336400557428" scale="2.585467869796047 2.8039020367516234 1.4157557935571283" material="" geometry=""></a-image>
+			
+			
+			<!-- Back -->
+			<a-text value="Back" onclick="window.history.go(-1)" geometry="primitive:plane;height:0.2;width:0.5" position="-1.5 0.4 -1.6" text="width:3;align:center" rotation="-0.16 34.3 -1.2"></a-text>
+
+
+			<!-- Camera + cursor -->
+			<a-camera position="0 0 0">
+				<a-cursor color="#000000" fuse-timeout="10">
+				</a-cursor>
+			</a-camera>
+			
+		</a-scene>
+		
+		<script>
+		var vehicleNone = document.querySelector('#vehicleNone');
+		vehicleNone.addEventListener('click', function() 
+		{
+			localStorage.setItem("vehicleSelected", "");
+			window.location.href = "level4.html";
+		});
+		var vehicle1 = document.querySelector('#vehicle1');
+		vehicle1.addEventListener('click', function() 
+		{
+			localStorage.setItem("vehicleSelected", "#bicycle");
+			window.location.href = "level4.html";
+		});
+		var vehicle2 = document.querySelector('#vehicl2');
+		vehicle2.addEventListener('click', function() 
+		{
+			localStorage.setItem("vehicleSelected", "#scoot");
+			window.location.href = "level4.html";
+		});
+		var vehicle3 = document.querySelector('#vehicle3');
+		vehicle3.addEventListener('click', function() 
+		{
+			localStorage.setItem("vehicleSelected", "#scooter");
+			window.location.href = "level4.html";
+		});
+		var vehicle4 = document.querySelector('#vehicle4');
+		vehicle4.addEventListener('click', function() 
+		{
+			localStorage.setItem("vehicleSelected", "#bike");
+			window.location.href = "level4.html";
+		});
+		</script>
+		
+  </body>
+</html>

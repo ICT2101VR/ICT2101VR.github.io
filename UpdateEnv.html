@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SCTF Trainer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="update.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="lvl_central">
+        <div class="row content">
+        <img id="logo" src="images/update levels.png">
+        <div>
+            <!-- environment-->
+        <h1>Environment</h1>
+            <form>  
+                <input type="checkbox" id="raining" value="rain" ><label for="raining">Raining</label><br>
+                <input type="checkbox" id="night" value="night"><label for="night">Night</label><br>
+            </form>
+        <button onclick="envFunction()">Confirm</button>
+        <script>
+            function envFunction() {
+                var checkboxNight = document.getElementById("night");
+                var checkboxRain = document.getElementById("raining");
+                if(checkboxNight.checked == true && checkboxRain.checked == false)
+                {
+                    alert("You have selected night")
+                }
+                if(checkboxNight.checked == false && checkboxRain.checked == true)
+                {
+                    alert("You have selected raining")
+                }
+                if(checkboxNight.checked == true && checkboxRain.checked == true)
+                {
+                    alert("You have selected night and raining")
+                }
+                if(checkboxNight.checked == false && checkboxRain.checked == false)
+                {
+                    alert("You have selected none")
+                }
+            }
+            </script>
+            <br>
+            <a href="update.html" id="back" onclick="window.history.go(-1); return false;"><label for="back">back</label></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

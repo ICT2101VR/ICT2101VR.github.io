@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SCTF Trainer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row content box">
+      <label>Username:</label>
+      <br>
+      <input id="username" type="text"></input>
+      <br>
+      <label>Password:</label>
+      <br>
+      <input type="password"></input>
+      <br>
+      <button style="margin-top:3%;" onclick="login()">LOGIN</button>
+      <br>
+      <button style="margin-top:3%; margin-right:2%; float:right;" onclick="newAcc()">Create New Account</button>
+  </div>
+</div>
+
+<script>
+function newAcc() {
+    window.location.href='createacc.html';
+}
+
+function login() {
+    var el = document.querySelector("#username");
+    var username = el.value;
+
+    newUser = localStorage.getItem("username");
+    type = localStorage.getItem("type");
+
+    console.log(newUser);
+    if(username == newUser && type == "player"){
+        window.location.href='startpage.html';
+    }
+    else if(username == newUser && type == "trainer"){
+        window.location.href='update.html';
+    }
+    else if (username == "i_am_player") {
+        console.log("player menu");
+        window.location.href='startpage.html';
+    } else if (username == "some_trainer") {
+        console.log("trainer menu");
+        window.location.href='update.html';
+    } else {
+        promptError();
+    }
+}
+
+function promptError() {
+    alert("Invalid Credentials or Non existent user");
+}
+</script>
+</body>
+</html>

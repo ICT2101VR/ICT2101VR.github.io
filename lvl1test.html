@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ICT2101-SafetyVR_Lvl2</title>
+		<meta name="description" content="360&deg; Image Gallery - A-Frame">
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+		<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+		<script src="set-image.js"></script>
+	</head>
+  <body>
+	<a-scene>
+		<a-assets>        
+			<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+		
+			
+			<!-- 3D Models --> 
+			<a-asset-item id="tree" src="images/Gtree/scene.gltf"></a-asset-item>
+			<a-asset-item id="bicycle" src="images/Bicycle/scene.gltf"></a-asset-item>
+			<a-asset-item id="car" src="images/car/car_02.gltf"></a-asset-item>
+			<a-asset-item id="roadScene" src="images/roadscene/Road_1229.gltf"></a-asset-item>
+		</a-assets>
+
+		<!-- 360-degree image -->
+		<a-sky id="image-360" color="#cef0fd"></a-sky>
+		<a-entity gltf-model="#roadScene" scale="0.01 0.01 0.01" position="0 1.2 0"></a-entity>
+		
+		<a-entity gltf-model="#car" scale="0.01 0.01 0.01" position="0 1 0" rotation="0 90 0">
+		<a-animation attribute ="position"
+				dur="5000" from="0 0 -100" to="0 0 -00"
+				repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		
+		<!-- Camera + cursor -->
+		<a-camera position="0 1.5 0">
+			<a-cursor color="#000000" fuse-timeout="10">
+			</a-cursor>
+		</a-camera>
+		
+	</a-scene>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ICT2101-SafetyVR_Lvl2</title>
+		<meta name="description" content="360&deg; Image Gallery - A-Frame">
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+		<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+		<script src="set-image.js"></script>
+	</head>
+  <body>
+	<a-scene>
+		<a-assets>        
+			<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+		
+			
+		<!-- 3D Models --> 
+		<a-asset-item id="car" src="images/car/car_02.gltf"></a-asset-item>
+		<a-asset-item id="Gtree" src="images/Gtree/scene.gltf"></a-asset-item>
+		<a-asset-item id="tree" src="images/tree/tree01.gltf"></a-asset-item>
+		<a-asset-item id="poodleOnMotor" src="images/poodleOnMotor/DogOnMotor.gltf"></a-asset-item>
+		<a-asset-item id="bicycle" src="images/Bicycle/scene.gltf"></a-asset-item>
+		</a-assets>
+
+		<!-- background image -->
+		<a-sky id="image-360" color="#cef0fd"></a-sky>
+		<a-sphere id="main-bg" radius="100" position="0 0 0" rotation="0 90 0" src="#start-bg" color="#333333" material="side: double;"></a-sphere>
+		<a-entity environment="groundColor: #3e7b00; groundColor2: #5ca307; groundTexture:walkernoise;"></a-entity>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:200.01;height:3" position="0 1.037 -1.02"></a-plane>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:200.01;height:3" position="4.9 1.037 -1.02"></a-plane>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ddf21e" geometry="width:200.01;height:0.1" position="0 1.037 -1.02"></a-plane>
+
+		<!--Left-->
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="-2.73 1 20.86" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="-2.8 0.8 16.27" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="-3 1 12.27" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="-4 1 8.27" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="-5 1 4.27" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="-6 1 0.27" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/Gtree/scene.gltf" scale="0.17 0.1 0.09" position="-11.86 0.099 -39.70"></a-entity>
+		<a-entity gltf-model="images/Gtree/scene.gltf" scale="0.17 0.1 0.09" position="-15.86 0.1 -40.70"></a-entity>
+		
+		<!--Right-->
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="7.4 1 19.40" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/tree/tree01.gltf" scale="0.004 0.004 0.004" position="8.38 0.898 9.624" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="images/Gtree/scene.gltf" scale="0.06 0.06 0.05" position="8.41 0.38 1.73"></a-entity>
+		
+		<!-- Moving car -->
+		<a-entity gltf-model="#bicycle" scale="0.005 0.005 0.01" position="0 0.27 -4.25" rotation="0 90 0">
+		<a-animation attribute ="position"
+				dur="9000" from="0 0 -100" to="0 0 15"
+				repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		<a-entity gltf-model="#poodleOnMotor" scale="1 1 1" position="0 1 0" rotation="-5 174 5.82">
+		<a-animation attribute ="position"
+				dur="8000" from="0 0 15" to="0 0 -100"
+				repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		<!-- Camera + cursor -->
+		<a-camera position="-0.006 1.5 15">
+			<a-cursor color="#000000" fuse-timeout="10">
+			</a-cursor>
+		</a-camera>
+		
+		
+	</a-scene>
+  </body>
+</html>

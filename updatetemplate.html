@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!--       environment-->
+       <h1>Environment</h1>
+<form>
+  <input type="checkbox" id="raining" value="rain">Raining<br>
+  <input type="checkbox" id="night" value="night">Night<br>
+</form>
+       <button onclick="envFunction()">Confirm</button>
+<script>
+function envFunction() {
+    var checkboxNight = document.getElementById("night");
+    var checkboxRain = document.getElementById("raining");
+    if(checkboxNight.checked == true && checkboxRain.checked == false)
+    {
+        alert("You have selected night")
+    }
+    if(checkboxNight.checked == false && checkboxRain.checked == true)
+    {
+        alert("You have selected raining")
+    }
+    if(checkboxNight.checked == true && checkboxRain.checked == true)
+    {
+        alert("You have selected night and raining")
+    }
+    if(checkboxNight.checked == false && checkboxRain.checked == false)
+    {
+        alert("You have selected none")
+    }
+}
+</script>
+<!--number of vehicles-->
+<h1>Vehicles</h1>
+<h4>Enter the number of vehicles</h4>
+<form action="">
+  <input type="text" id="vehicles" value="1">
+</form>
+       <button onclick="vehFunction()">Confirm</button>
+<script>
+function vehFunction() {
+    var i =document.getElementById("vehicles").value;
+     alert("You have entered: "+i+" click OK to confirm");
+}
+</script>
+    
+<!--number of pedestrians-->
+<h1>Pedestrians</h1>
+<h4>Enter the number of pedestrians</h4>
+<form action="">
+  <input type="text" id="pedestrian" value="1">
+</form>
+       <button onclick="pedestrianFunction()">Confirm</button>
+<script>
+function pedestrianFunction() {
+    var i =document.getElementById("pedestrian").value;
+    alert("You have entered: "+i+" click OK to confirm");
+}
+</script>
+    

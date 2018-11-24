@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ICT2101-SafetyVR_Lvl2</title>
+		<meta name="description" content="360&deg; Image Gallery - A-Frame">
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+		<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+		<!--Make it rain-->
+		<script src="https://rawgit.com/takahirox/aframe-rain/master/build/aframe-rain.min.js"></script>
+		<script src="set-image.js"></script>
+
+		<script src="https://unpkg.com/aframe-aabb-collider-component@^2.2.1/dist/aframe-aabb-collider-component.min.js"></script>
+  <script>
+    AFRAME.registerComponent("minus", {
+        init: function() {
+            this.el.addEventListener("hitstart", (e)=>{
+                // Collision ! increment the score
+                var pointsEntity = this.el.querySelector('a-text');
+                var points = pointsEntity.getAttribute('value');
+                if(points == "\nGame\nOver" || points <= 0) {
+                    pointsEntity.setAttribute('value', '\nGame\nOver');
+                    setTimeout(function() { window.location.href = "startpage.html";; }, 5000);
+                } else {
+                    points -= 100;
+                    var feedback = document.querySelector("#feedback-text");
+                    pointsEntity.setAttribute('value', points);
+                    feedback.setAttribute('visible', 'true');
+                    setTimeout(function() { feedback.setAttribute('visible', 'false'); }, 1000);
+                }
+            })
+        }
+    });
+
+    AFRAME.registerComponent("end-point", {
+        init: function() {
+            this.el.addEventListener("hitstart", (e)=>{
+                // Collision ! increment the score
+                var text = document.querySelector("#player-text");
+                text.setAttribute('value', 'WIN!');
+                setTimeout(function() { window.location.href = "startpage.html";; }, 5000);
+            })
+        }
+    })
+</script>
+	</head>
+  <body>
+	<a-scene rain="count:20000; dropHeight: .25; dropRadius: .05; height: 10000; color: white; splash: false">
+		<a-assets>        
+			<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+		
+			
+			<!-- 3D Models --> 
+			<a-asset-item id="car" src="images/car/car_02.gltf"></a-asset-item>
+            <a-asset-item id="Gtree" src="images/Gtree/scene.gltf"></a-asset-item>
+            <a-asset-item id="tree" src="images/tree/tree01.gltf"></a-asset-item>
+            <a-asset-item id="poodleOnMotor" src="images/poodleOnMotor/DogOnMotor.gltf"></a-asset-item>
+        
+            <a-asset-item id="lamppost" src="images/Lamppost/Lamppost.gltf"></a-asset-item>
+            <a-asset-item id="gazebo" src="images/Gazebo/PUSHILIN_gazebo.gltf"></a-asset-item>
+            <a-asset-item id="cyclist" src="images/cyclist/model.gltf"></a-asset-item>
+            <a-asset-item id="sitBench" src="images/sit_bench/model.gltf"></a-asset-item>
+			<a-asset-item id="bench" src="images/bench/model.gltf"></a-asset-item>
+			<a-asset-item id="hi_man" src="images/hi_man/model.gltf"></a-asset-item>
+			<a-asset-item id="swing" src="images/Swing/CUPIC_SWING.gltf"></a-asset-item>
+			<a-asset-item id="slide" src="images/slide/model.gltf"></a-asset-item>
+			<a-asset-item id="manytrees" src="images/treesmany/trees1.gltf"></a-asset-item>
+			<a-asset-item id="playground" src="images/playground/model.gltf"></a-asset-item>
+			
+			<a-asset-item id="bicycle" src="images/Bicycle/scene.gltf"></a-asset-item>
+			<a-asset-item id="scoot" src="images/razor_scooter/scene.gltf"></a-asset-item>
+			<a-asset-item id="scooter" src="images/scooter/scene.gltf"></a-asset-item>
+			<a-asset-item id="bike" src="images/bike/scene.gltf"></a-asset-item>
+			<img id="leftPlz" src="images/leftPlz.JPG">
+        </a-assets>
+
+		<!-- background image -->
+        <a-sky id="image-360" color="#cef0fd"></a-sky>
+		<a-entity environment="groundColor: #3e7b00; groundColor2: #5ca307; groundTexture:walkernoise;"></a-entity>
+		<a-plane rotation="-90 90 0" width="50" height="40" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:200.01;height:7" position="0 1.037 -1.0203135998170165"></a-plane>
+        <a-plane rotation="-90 90 0" width="50" height="40" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:200.01;height:0.1" position="-3.243382161564873 1.037 -1.02"></a-plane>
+        <a-plane rotation="-90 90 0" width="50" height="40" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:200.01;height:0.1" position="3.2504784660164527 1.037 -1.02"></a-plane>
+        
+        <!-- trees -->
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04" position="7 0 27" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="10 0 20" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04" position="13 0 10" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04" position="7 0 -10" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="10 0 -30" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04" position="13 0 -50" rotation="0 40 0"></a-entity>
+		
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="-7 0 24" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="-10 0 17" rotation="0 40 0"></a-entity>
+        <a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="-9 0 10" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="-20 0 -10" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="-10 0 -30" rotation="0 40 0"></a-entity>
+        <a-entity gltf-model="#tree" scale="0.04 0.04 0.04"  position="-9 0 -50" rotation="0 40 0"></a-entity>
+		
+		<a-entity gltf-model="#manytrees" scale="0.07 0.09 0.12"  position="30 -1.8 -20" rotation="0 10 0"></a-entity>
+		<a-entity gltf-model="#manytrees" scale="0.07 0.09 0.12"  position="24 -1.8 -80" rotation="0 -5 0"></a-entity>
+		<a-entity gltf-model="#manytrees" scale="0.07 0.09 0.12"  position="30 -1.8 70" rotation="0 7 0"></a-entity>
+		
+		<a-entity gltf-model="#manytrees" scale="0.07 0.09 0.12"  position="-20 -1.8 70" rotation="0 10 0"></a-entity>
+		<a-entity gltf-model="#manytrees" scale="0.07 0.09 0.12"  position="-24 -1.8 -80" rotation="0 10 0"></a-entity>
+	
+
+        <!-- Extra decorations -->
+		<a-entity gltf-model="#gazebo" scale="6 6 6" position="12 3.8 87" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#gazebo" scale="6 6 6" position="13 3 35" rotation="0 40 0"></a-entity>
+		<a-entity gltf-model="#gazebo" scale="6 6 6" position="-11 3 -80" rotation="0 40 0"></a-entity>	
+		<a-entity gltf-model="#sitBench" scale="4 1.5 2" rotation="0 -98 0" position="6 -1.5 60"></a-entity>
+		<a-entity gltf-model="#sitBench" scale="4 1.5 2" rotation="0 -98 0" position="6 -1.5 -1"></a-entity>
+		<a-entity gltf-model="#bench" rotation="0 179 0" position="4 -3 22" scale="2 3 6"></a-entity>
+		<a-image src="#leftPlz" position="-5 4 5" width="1.1" height="0.6" rotation="0 21 0" scale="5 2 1"></a-image>
+		
+		<a-entity gltf-model="#playground" scale="5 5 5"  position="-27 -2 25" rotation="0 270 0"></a-entity>
+		<a-entity gltf-model="#swing" scale="0.04 0.04 0.04" position="-16 0 -30" rotation="0 -17 0"></a-entity>
+		<a-entity gltf-model="#slide" scale="35 35 35" position="-35 -32 -30" rotation="0 45 0"></a-entity>
+		
+		<!-- lamppost -->
+		<a-entity gltf-model="#lamppost" scale="3 2.5 3" position="6 10 5" rotation="-90 0 0"></a-entity>
+		<a-entity gltf-model="#lamppost" scale="3 2.5 3" position="-6 10 -10" rotation="-90 0 0"></a-entity>
+		
+        <!-- Bicycle-->
+		<a-entity class="hitbox" gltf-model="#cyclist" scale="7 7 7" position="3 -10 0" rotation="0 100 0">
+		<a-animation attribute ="position"
+				dur="15000" from="5 -10 -100" to="5 -10 100"
+				repeat="indefinite"></a-animation>
+		</a-entity>
+		<a-text value="Hey, keep left!" geometry="primitive:plane;height:0.5;width:4" text="align:center" position="3.070311228602411 4.739322243564543 16.768367948766922">
+				<a-animation attribute ="position"
+				dur="15000" from="3 5 -100" to="3 5 100"
+				repeat="indefinite"></a-animation>
+		</a-text>
+
+
+		<!-- Walking man-->
+		<a-entity class="hitbox" gltf-model="#hi_man" position="0.7 0 -1" rotation="0 -108 0" scale="1.7 1.4 1.1">
+		<a-animation attribute ="position"
+				dur="50000" from="0 0 -100" to="0 0 19"
+				repeat="indefinite"></a-animation>
+		</a-entity>
+
+		<!-- instructions -->
+		<a-entity position="-5 3 43">
+			<a-text value="keep left. Reach the end of the road to win" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+		</a-entity>
+		<a-box end-point position="-3 3 -90" depth="0.5" height="0.5" width="0.5" aabb-collider="objects: #player">
+			<a-text value="Touch me to complete level" position="0 0 0.75" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+		</a-box>
+		<!-- Camera + cursor -->
+		<a-entity
+			minus
+			id="player"
+			geometry="primitive: box"
+			camera
+			wasd-controls="acceleration: 200"
+			look-controls position="-8 3 50"
+			aabb-collider="objects: .hitbox"
+		>
+			<a-text id="player-text" value="500" position="0.9 0.75 -1" color="red"></a-text>
+			<a-text id="feedback-text"  visible="false" value="Collided\nwith\nentity" position="0 0 -1" color="blue"></a-text>
+			<a-cursor color="#000000" fuse-timeout="10">
+			</a-cursor>
+			<a-entity id="vehicle" gltf-model="" scale="0.01 0.007 0.01" rotation="2 -90 -4" position="-0.64 -3.5 0.6"></a-entity>
+		</a-camera>
+		
+	</a-scene>
+	
+	<script>
+	var vehicle = document.querySelector('#vehicle');
+	vehicle.setAttribute('gltf-model', localStorage.getItem("vehicleSelected"));
+	</script>
+		
+  </body>
+</html>

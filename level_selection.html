@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ICT2101-SafetyVR</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="set-image.js"></script>
+  </head>
+  <body>
+		
+  <a-scene>
+      <a-assets>
+				<img id="logo" src="images/Logo.png">
+						<!--first load background-->
+						<img id="road" crossorigin="anonymous" src="road.jpg">
+						<!--Choose Level Frame-->
+						<img id="Lvl_one" crossorigin="anonymous" src="images/lvl1.png">
+						<img id="Lvl_two" crossorigin="anonymous" src="images/lvl2.png">
+						<img id="Lvl_three" crossorigin="anonymous" src="images/lvl3.png">
+						<img id="Lvl_four" crossorigin="anonymous" src="images/lvl4.png">
+						<img id="Lvl_five" crossorigin="anonymous" src="images/lvl5.png">
+						
+				<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+
+      </a-assets>
+
+    <!-- 360-degree image -->
+    <a-sky id="image-360" src="#road"></a-sky>
+		<a-image src="#logo" position="0 2 -1.5" width="0.97" height="0.5"></a-image>
+		
+		<!-- Back -->
+		<a-text value="Back" onclick="window.history.go(-1)" geometry="primitive:plane;height:0.2;width:0.5" position="-1.5 0.4 -1.6" text="width:3;align:center"></a-text>
+
+	  <!--Level Selection Menu-->
+	  <a-entity id="links" layout="type: line; margin: 1.5" position="-3 1.2 -4">
+				<a-image id="level1" src="#Lvl_one" position="0 0 1" rotation="0 43 0"></a-image>
+				<a-image id="level2" src="#Lvl_two" position="1.5 0 0.2" rotation="0 27 0"></a-image>
+				<a-image id="level3" src="#Lvl_three"></a-image>
+				<a-image id="level4" src="#Lvl_four" position="4.5 0 0.2" rotation="0 -27 0"></a-image>
+				<a-image id="level5" src="#Lvl_five" position="6 0 1" rotation="0 -43 0"></a-image>
+	  </a-entity>
+
+    <!-- Camera + cursor -->
+		<a-camera position="0 0 0">
+			<a-cursor color="#000000" fuse-timeout="10">
+			</a-cursor>
+		</a-camera>
+
+  </a-scene>
+	
+	<script>
+		var level_1 = document.querySelector('#level1');
+		level_1.addEventListener('click', function() 
+		{
+			window.location.href = "vehicle_selection1.html";
+		});
+		var level_2 = document.querySelector('#level2');
+		level_2.addEventListener('click', function() 
+		{
+			window.location.href = "vehicle_selection2.html";
+		});
+		var level_3 = document.querySelector('#level3');
+		level_3.addEventListener('click', function() 
+		{
+			window.location.href = "vehicle_selection3.html";
+		});
+		var level_4 = document.querySelector('#level4');
+		level_4.addEventListener('click', function() 
+		{
+			window.location.href = "vehicle_selection4.html";
+		});
+		var level_5 = document.querySelector('#level5');
+		level_5.addEventListener('click', function() 
+		{
+			window.location.href = "vehicle_selection5.html";
+		});
+	</script>
+  </body>
+</html>

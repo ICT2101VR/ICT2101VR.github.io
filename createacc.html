@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SCTF Trainer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row content box">
+      <label>CREATE ACCOUNT</label>
+      <br>
+      <label>Username:</label>
+      <br>
+      <input id="username" type="text"></input>
+      <br>
+      <label>Password:</label>
+      <br>
+      <input type="password"></input>
+      <br>
+      <label>You are: </label>
+      <input type="radio" name="type" value="player">Player
+      <input type="radio" name="type" value="trainer">Trainer
+      <br>
+      <button style="margin-top:3%;" onclick="createAcc()">Submit</button>
+  </div>
+</div>
+
+<script>
+
+function createAcc() {
+    var username = document.querySelector("#username").value;
+    localStorage.setItem("username", username);
+
+    var type = document.querySelector('input[name=type]:checked').value;
+    localStorage.setItem("type", type);
+    console.log(type);
+    alert("Account Successfully Created !!");
+    window.location.href='index.html';
+}
+
+function promptError() {
+    alert("Invalid Credentials or Non existent user");
+}
+</script>
+</body>
+</html>

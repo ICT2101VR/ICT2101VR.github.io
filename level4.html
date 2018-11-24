@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ICT2101-SafetyVR_Lvl4</title>
+		<meta name="description" content="360&deg; Image Gallery - A-Frame">
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+		<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+		<script src="set-image.js"></script>
+
+		<script src="https://unpkg.com/aframe-aabb-collider-component@^2.2.1/dist/aframe-aabb-collider-component.min.js"></script>
+		<script>
+			AFRAME.registerComponent("minus", {
+				init: function() {
+					this.el.addEventListener("hitstart", (e)=>{
+						// Collision ! increment the score
+						var pointsEntity = this.el.querySelector('a-text');
+						var points = pointsEntity.getAttribute('value');
+						if(points == "\nGame\nOver" || points <= 0) {
+							pointsEntity.setAttribute('value', '\nGame\nOver');
+							setTimeout(function() { window.location.href = "startpage.html";; }, 5000);
+						} else {
+							points -= 100;
+							var feedback = document.querySelector("#feedback-text");
+							pointsEntity.setAttribute('value', points);
+							feedback.setAttribute('visible', 'true');
+							setTimeout(function() { feedback.setAttribute('visible', 'false'); }, 1000);
+						}
+					})
+				}
+			});
+
+			AFRAME.registerComponent("end-point", {
+				init: function() {
+					this.el.addEventListener("hitstart", (e)=>{
+						// Collision ! increment the score
+						var text = document.querySelector("#player-text");
+						text.setAttribute('value', 'WIN!');
+						setTimeout(function() { window.location.href = "startpage.html";; }, 5000);
+					})
+				}
+			})
+		</script>
+	</head>
+  <body>
+	<a-scene>
+		<a-assets>        
+			<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+		
+			<!-- 3D Models --> 
+			<a-asset-item id="car" src="images/car/car_02.gltf"></a-asset-item>
+            <a-asset-item id="Gtree" src="images/Gtree/scene.gltf"></a-asset-item>
+            <a-asset-item id="tree" src="images/tree/tree01.gltf"></a-asset-item>
+            <a-asset-item id="lamppost" src="images/Lamppost/Lamppost.gltf"></a-asset-item>
+            <a-asset-item id="cyclist" src="images/cyclist/model.gltf"></a-asset-item>
+            <a-asset-item id="hi_man" src="images/hi_man/model.gltf"></a-asset-item>
+			<a-asset-item id="traffic_light" src="images/traffic_light__animation/scene.gltf"></a-asset-item>
+			<a-asset-item id="stop" src="images/stop_sign/scene.gltf"></a-asset-item>
+			<a-asset-item id="car2" src="images/racing_car_nismo/scene.gltf"></a-asset-item>
+			<a-asset-item id="car3" src="images/racing_car/scene.gltf"></a-asset-item>
+			<a-asset-item id="motorbike" src="images/3_wheels_motorbike/scene.gltf"></a-asset-item>
+			<a-asset-item id="scooter" src="images/scooter1/scene.gltf"></a-asset-item>
+			<a-asset-item id="hotel" src="images/CUPIC_HOTEL_/CUPIC_HOTEL.gltf"></a-asset-item>
+			<a-asset-item id="bakery" src="images/bakery/bakery_1243.gltf"></a-asset-item>
+			<a-asset-item id="icecream" src="images/ice_cream_shop/scene.gltf"></a-asset-item>
+			<a-asset-item id="condo" src="images/condo/scene.gltf"></a-asset-item>
+			<a-asset-item id="littleshop" src="images/little_shop/model.gltf"></a-asset-item>
+			<a-asset-item id="autoshop" src="images/auto-shop/scene.gltf"></a-asset-item>
+			
+			<a-asset-item id="bicycle" src="images/Bicycle/scene.gltf"></a-asset-item>
+			<a-asset-item id="scoot" src="images/razor_scooter/scene.gltf"></a-asset-item>
+			<a-asset-item id="scooter" src="images/scooter/scene.gltf"></a-asset-item>
+			<a-asset-item id="bike" src="images/bike/scene.gltf"></a-asset-item>
+			
+			<img id="arrowHead" src="images/arrow.png">
+        </a-assets>
+
+		<!-- background image -->
+        <a-sky id="image-360" color="#cef0fd"></a-sky>
+		<a-entity environment="groundColor: #3e7b00; groundColor2: #5ca307; groundTexture:walkernoise;"></a-entity>
+		
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:200.01;height:20" position="0 0 0" scale="1 1 1"></a-plane>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:200.01;height:0.1" position="-9.5 0 0" scale="1 1 1"></a-plane>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:200.01;height:0.1" position="9.5 0 0" scale="1 1 1"></a-plane>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:200.01;height:0.1" position="0 0 0"></a-plane>
+		
+		<a-plane rotation="-90 -180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:95;height:20" position="-57.5 0 0"></a-plane>
+		<a-plane rotation="-90 -180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:95;height:0.1" position="-57.5 0 -9.5"></a-plane>
+		<a-plane rotation="-90 -180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:95;height:0.1" position="-57.5 0 9.5"></a-plane>
+		<a-plane rotation="-90 -180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:95;height:0.1" position="-57.5 0 0"></a-plane>
+		
+		<!-- Deco road -->
+		
+		<a-triangle rotation="-90 179.2190884244158 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-22 0 -3.3" scale="2.3664215517822993 1 1"></a-triangle>
+		<a-triangle rotation="-89.99999914622636 0.08271069749410165 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-22 0 -7.2" scale="2.2966731829084512 1 1"></a-triangle>
+		<a-plane rotation="-90 -178.985 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:6.4;height:0.5" position="-25 0 -5"></a-plane>
+		<a-plane rotation="-90 91.36899490629062 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:3.8;height:0.5" position="-22.08 0 -5"></a-plane>
+
+		<a-triangle rotation="-89.99999852122066 88.99536113154063 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-22 0 5" scale="2.3127724243931516 1.9058421390169957 1"></a-triangle>
+		<a-plane rotation="-90 -178.985 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="-20 0 5"></a-plane>
+
+		<a-triangle rotation="-90 0 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-5 0 7" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="-5 0 10"></a-plane>
+
+		<a-triangle rotation="-90 0 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-5 0 -23" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="-5 0 -20"></a-plane>
+
+		<a-triangle rotation="-90 0 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-5 0 -53" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="-5 0 -50"></a-plane>
+
+		<a-triangle rotation="-90 0 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-5 0 37" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="-5 0 40"></a-plane>
+
+		<a-triangle rotation="-90 0 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="-5 0 67" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="-5 0 70"></a-plane>
+
+		<a-triangle rotation="-90 180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="5 0 12" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="5 0 9"></a-plane>
+
+		<a-triangle rotation="-90 180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="5 0 42" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="5 0 39"></a-plane>
+
+		<a-triangle rotation="-90 180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="5 0 72" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="5 0 69"></a-plane>
+
+		<a-triangle rotation="-90 180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="5 0 -18" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="5 0 -21"></a-plane>
+
+		<a-triangle rotation="-90 180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="" position="5 0 -48" scale="2.3 1.9 1"></a-triangle>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#e7e7e7" geometry="width:5;height:0.5" position="5 0 -51"></a-plane>
+		
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#c4b9a6" geometry="width:200.01;height:10" position="22 0 0"></a-plane>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#c4b9a6" geometry="width:80;height:10" position="-22 0 50"></a-plane>
+		<a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#c4b9a6" geometry="width:80;height:10" position="-22 0 -50"></a-plane>
+		
+		<!-- trees -->
+        <!-- RIGHT-->
+        <a-entity gltf-model="#tree" id="parent" position="12 0 -6" scale="0.04 0.04 0.04" rotation="0 40 0">
+			<a-entity gltf-model="#tree" id="right"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-1500 0 2000"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-1200 0 1600"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-900 0 1200"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-600 0 800"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-300 0 400"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="0 0 0"></a-entity>
+            <a-entity gltf-model="#tree" id="right1" position="150 0 -200"></a-entity>
+            <a-entity gltf-model="#tree" id="right3" position="450 0 -600"></a-entity>
+			<a-entity gltf-model="#tree" id="right5" position="750 0 -1000"></a-entity>
+			<a-entity gltf-model="#tree" id="right5" position="1050 0 -1400"></a-entity>
+		</a-entity>
+		
+		<a-entity gltf-model="#tree" id="parent" position="-15 0 14" scale="0.04 0.04 0.04" rotation="0 40 0">
+			<a-entity gltf-model="#tree" id="right"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-1500 0 2000"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-1200 0 1600"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-900 0 1200"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-600 0 800"></a-entity>
+			<a-entity gltf-model="#tree" id="right1" position="-300 0 400"></a-entity>
+		</a-entity>
+		
+		<!-- Buildings -->
+		<a-entity gltf-model="#autoshop" position="-60 0 70" scale="3 4 3"></a-entity>
+		<a-entity gltf-model="#hotel" position="-90 0 -50" scale="0.2 0.2 0.2"></a-entity>
+		<a-entity gltf-model="#icecream" position="-50 -1 30" rotation="0 90 0" scale="4 4 4"> </a-entity>
+		<a-entity gltf-model="#littleshop" position="37 13 -58" scale="4 3 4" rotation="0 -90 0"></a-entity>
+		<a-entity gltf-model="#condo" position="35 -3 40" scale="1 1.5 2" rotation="0 0 0"></a-entity>
+		<!--<a-entity gltf-model="#oldcitybuilding" position="35 3 50" rotation="0 90 0" scale="8 8 6"> </a-entity>-->
+		<a-entity gltf-model="#bakery" position="40 -5 0" rotation="0 -90 0" scale="0.5 0.5 0.5"> </a-entity>
+		
+		<!-- Traffic light -->
+		<a-entity gltf-model="#traffic_light" scale="0.22 0.2 0.3" position="-12 0 -15" animation-mixer=""></a-entity>
+
+		<a-circle id="stop" geometry="primitive: circle" radius="1" position="-11.7 13.4 -11" scale="0.762 0.647 7.368">
+			<a-animation attribute="material.color" from="white" to="red" dur="3000" repeat="indefinite"></a-animation>
+		</a-circle>
+
+		<a-circle id="wait" geometry="primitive: circle" radius="1" position="-11.7 11.9 -11" scale="0.762 0.647 7.368">
+			<a-animation attribute="material.color" from="white" to="orange" dur="6000" repeat="indefinite"></a-animation>
+		</a-circle>
+
+		<a-circle id="go" geometry="primitive: circle" radius="1" position="-11.7 9.8 -11" scale="0.762 0.647 7.368">
+			<a-animation attribute="material.color" from="white" to="green" dur="9000" repeat="indefinite"></a-animation>
+		</a-circle>
+
+		<!-- Moving entity -->
+		<!-- Left lane -->
+		<a-entity class="hitbox" gltf-model="#car" scale="0.01 0.015 0.012" rotation="0 90 0">
+			
+            <a-animation attribute ="position"
+                dur="15000" from="4 0.4 -100" to="4 0.4 100"
+				repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		<a-entity class="hitbox" gltf-model="#car2" scale="0.01 0.015 0.012" >
+            <a-animation attribute ="position"
+                dur="18000" from="4 2 -81.6" to="4 2 100"
+				repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		<a-entity>
+			<a-entity class="hitbox" gltf-model="#car3" scale="0.01 0.015 0.012" rotation="0 180 0">
+				<a-animation attribute ="position"
+					dur="16000" from="4 0.5 -88" to="4 0.9 100"
+					repeat="indefinite"></a-animation>
+			</a-entity>
+			<a-text value="Hey, keep left!" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+					<a-animation attribute ="position"
+					dur="16000" from="4 3 -88" to="4 3.4 100"
+					repeat="indefinite"></a-animation>
+			</a-text>
+		</a-entity>
+
+		<a-entity class="hitbox" gltf-model="#motorbike" scale="0.05 0.04 0.09">
+            <a-animation attribute ="position"
+                dur="17000" from="4.4 0.5 -93" to="4.4 0.9 100"
+                repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		<!-- Right lane -->
+		<a-entity class="hitbox" gltf-model="#scooter" rotation="0 180 0">
+            <a-animation attribute ="position"
+                dur="16000" from="-4 0.5 100" to="-4 0.9 -100"
+                repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		<a-entity class="hitbox" gltf-model="#car3" scale="0.01 0.015 0.012" >
+            <a-animation attribute ="position"
+                dur="15000" from="-4 0.5 100" to="-4 0.9 -100"
+                repeat="indefinite"></a-animation>
+		</a-entity>
+		
+		<!-- Side road -->
+		<a-entity class="hitbox" gltf-model="#car2" scale="0.01 0.015 0.012" position="-90 2 -2.5" rotation="0 93 0">
+            <a-animation attribute="position" dur="14500" from="-90 2 -2.5" to="-13 2 -2.5" repeat="indefinite"></a-animation>
+		</a-entity>
+		<!-- instructions -->
+		<a-entity position="-13 3 38">
+			<a-text value="Go straight" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+		</a-entity>
+		<a-entity position="-17 3 17">
+			<a-text value="Wait for traffic light" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+		</a-entity>
+		<a-entity position="-18 3 -55">
+			<a-text value="cross when it's safe" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+		</a-entity>
+		<a-box end-point position="18 3 -75" depth="0.5" height="0.5" width="0.5" aabb-collider="objects: #player">
+			<a-text value="Touch me to complete level" position="0 0 0.75" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+		</a-box>
+		<!-- Camera + cursor -->
+		<a-entity
+			minus
+			id="player"
+			geometry="primitive: box"
+			camera
+			wasd-controls="acceleration: 200"
+			look-controls position="-8 3 50"
+			aabb-collider="objects: .hitbox"
+		>
+			<a-text id="player-text" value="500" position="0.9 0.75 -1" color="red"></a-text>
+			<a-text id="feedback-text"  visible="false" value="Collided\nwith\nentity" position="0 0 -1" color="blue"></a-text>
+			<a-cursor color="#000000" fuse-timeout="10">
+			</a-cursor>
+			<a-entity id="vehicle" gltf-model="" scale="0.01 0.007 0.01" rotation="2 -90 -4" position="-0.64 -3.5 0.6"></a-entity>
+		</a-camera>
+		
+	</a-scene>
+	
+	<script>
+	var vehicle = document.querySelector('#vehicle');
+	vehicle.setAttribute('gltf-model', localStorage.getItem("vehicleSelected"));
+	</script>
+	
+  </body>
+</html>

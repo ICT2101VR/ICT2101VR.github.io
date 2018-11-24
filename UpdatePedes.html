@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SCTF Trainer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="update.css">
+</head>
+<body>
+
+<div class="container-fluid">
+        <div class="lvl_central">
+            <div class="row content">
+            <img id="logo" src="images/update levels.png">
+            <div>
+            <!--number of pedestrians-->
+            <h1>Pedestrians</h1>
+            <h4>Enter the number of pedestrians</h4>
+            <form action="">
+            <input type="text" id="pedestrian" value="1">
+            </form>
+                <button onclick="pedestrianFunction()">Confirm</button>
+            <script>
+            function pedestrianFunction() {
+                var i =document.getElementById("pedestrian").value;
+                var integer = Number(i);
+                if (Number.isInteger(integer)==true)
+                {
+                    if(integer<=0)
+                    {
+                        alert("Please enter a positive number.");
+                    }
+                    else if(integer%1==0)
+                    {
+                        alert("You have entered: "+integer+" click OK to confirm");
+                    }
+                }
+                else
+                {
+                    alert("Please enter a whole number!");
+                }
+            
+            }
+            </script>
+            <br>
+            <a href="update.html" id="back" onclick="window.history.go(-1); return false;"><label for="back">back</label></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

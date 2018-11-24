@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ICT2101-SafetyVR</title>
+		<meta name="description" content="360&deg; Image Gallery - A-Frame">
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+		<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+		<script src="set-image.js"></script>
+	</head>
+
+	<body>
+	
+	
+		<a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">	
+			<a-assets>			
+				<img id="logo" src="images/Logo.png">
+				<img id="player" src="images/Player.png">
+                <img id="trainer" src="images/Trainer.png">
+				<img id="bicycle" src="images/bicycle.png">
+				<img id="bicycleG" src="images/bicycleG.png">
+				<img id="scoreboard" src="images/scoreboard.png">
+			</a-assets>
+			
+			<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+			
+			
+			<a-sky id="image-360" color="#cef0fd"></a-sky>
+			
+			<a-entity environment="preset: forest; dressingAmount: 500; groundColor: #3e7b00; groundColor2: #5ca307; groundTexture:walkernoise;"></a-entity>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:100.01;height:1" position="0 1.037 -1.0203135998170165"></a-plane>
+			
+			<!-- Strips -->
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="-16.916692199163478 1.117 -0.95"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="-7.974724991512709 1.117 -0.9896074856269623"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="-26.40068635384016 1.117 -0.95"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="9.67508564934602 1.117 -0.95"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="3.0932156479795836 1.117 -0.95"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="-3.2526424277337282 1.117 -0.95"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="18.054158129029595 1.117 -0.95"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:2;height:0.15" position="30.63564720467692 1.117 -0.95"></a-plane>
+			<a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" material="repeat:1000 1000;depthTest:false;color:#ffffff" geometry="width:1;height:0.15" position="0.104993887741065 1.117 -0.95"></a-plane>
+			<!-- End Strips-->
+			
+			<!-- Start page deco-->
+			<a-image src="#scoreboard" position="0 2.1 -1.3" width="1" height="1"></a-image>
+			<a-image id="playerButton" src="#player" position="0 1.5 -1" scale="0.510 0.243 1" width="1.1" height="0.6"></a-image>                       
+			<a-image src="#bicycle" position="-1.5 1 -1.3" width="0.97" height="0.7"></a-image>
+			<a-image src="#bicycleG" position="1.5 1.2 -1.3" width="0.97" height="0.7"></a-image>
+			
+			<!-- Camera + cursor -->
+			<a-camera position="0 1.5 0.2">
+                <a-cursor color="#000000" fuse-timeout="10">
+				</a-cursor>
+            </a-camera>
+			
+		</a-scene>
+		
+		<script>
+			
+                        var startButton = document.querySelector('#playerButton');
+			startButton.addEventListener('click', function() 
+			{
+				window.location.href = "startpage.html";
+			});
+                        var startButton = document.querySelector('#trainerButton');
+			startButton.addEventListener('click', function() 
+			{
+				window.location.href = "update.html";
+			});
+		</script>
+	
+	</body>
+</html>

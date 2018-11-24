@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ICT2101-SafetyVR_Lvl3</title>
+		<meta name="description" content="360&deg; Image Gallery - A-Frame">
+		<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+		<script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+		<script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+		<script src="set-image.js"></script>
+	</head>
+  <body>
+	<a-scene>
+		<a-assets>        
+			<audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+		
+			
+			<!-- 3D Models --> 
+			<a-asset-item id="car" src="images/car/car_02.gltf"></a-asset-item>
+            <a-asset-item id="Gtree" src="images/Gtree/scene.gltf"></a-asset-item>
+            <a-asset-item id="tree" src="images/tree/tree01.gltf"></a-asset-item>
+            <a-asset-item id="poodleOnMotor" src="images/poodleOnMotor/DogOnMotor.gltf"></a-asset-item>
+            
+            <a-asset-item id="lamppost" src="images/Lamppost/Lamppost.gltf"></a-asset-item>
+            <a-asset-item id="gazebo" src="images/Gazebo/PUSHILIN_gazebo.gltf"></a-asset-item>
+            <a-asset-item id="cyclist" src="images/cyclist/model.gltf"></a-asset-item>
+            <a-asset-item id="sitBench" src="images/sit_bench/model.gltf"></a-asset-item>
+			<a-asset-item id="bench" src="images/bench/model.gltf"></a-asset-item>
+            <a-asset-item id="hi_man" src="images/hi_man/model.gltf"></a-asset-item>
+            <a-asset-item id="busStop" src="images/bus_stop/scene.gltf"></a-asset-item>
+            <a-asset-item id="old_man" src="images/old_man/scene.gltf"></a-asset-item>
+            <a-asset-item id="traffic_light" src="images/traffic_light__animation/scene.gltf"></a-asset-item>
+            <a-asset-item id="human_light" src="images/traffic_light/scene.gltf"></a-asset-item>
+            <a-asset-item id="car_light" src="images/car_traffic_light/scene.gltf"></a-asset-item>
+            <a-asset-item id="buildings" src="images/skyscrapers/scene.gltf"></a-asset-item>
+            <a-asset-item id="car3" src="images/racing_car/scene.gltf"></a-asset-item>
+            <a-asset-item id="girl" src="images/girl_sitting/scene.gltf"></a-asset-item>
+            <a-asset-item id="boi" src="images/man_sitting/scene.gltf"></a-asset-item>
+			
+			<a-asset-item id="bicycle" src="images/Bicycle/scene.gltf"></a-asset-item>
+			<a-asset-item id="scoot" src="images/razor_scooter/scene.gltf"></a-asset-item>
+			<a-asset-item id="scooter" src="images/scooter/scene.gltf"></a-asset-item>
+			<a-asset-item id="bike" src="images/bike/scene.gltf"></a-asset-item>
+			
+            <img id="leftPlz" src="images/leftPlz.JPG">
+            <img id="texture" src="images/texture.jpg">
+            <img id="yellowT" src="images/yellowTexture.jpg">
+            <img id="bang" src="images/bang.png">
+        </a-assets>
+
+		<!-- background image -->
+        <a-sky id="image-360" color="#cef0fd"></a-sky>
+		<a-entity environment="groundColor: #3e7b00; groundColor2: #5ca307; groundTexture:walkernoise;"></a-entity>
+        <a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:200.03;height:12.5" position="3.9121448166027255 1.037 -1.02"></a-plane>
+        <a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:200.01;height:0.4" position="9.322249388680797 1.037 -1.02"></a-plane>
+        <a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:200.01;height:0.4" position="-1.81372561854568 1.037 -1.02"></a-plane>        
+        
+        <!-- Human path -->
+        <a-plane src="#texture" height="8" width="60" rotation="-90 90 0" position="-6.2 1.037 69.06388169581072"></a-plane>
+        <a-plane src="#texture" height="8" width="100" rotation="-90 180 0" position="-52.161956599957875 1.037 36.94924083614169"></a-plane>
+        <a-plane src="#texture" height="8" width="100" rotation="-90 180 0" position="-52.161956599957875 1.037 13.42761637069653"></a-plane>
+        <a-plane src="#yellowT" height="2" width="40" rotation="-90 180 0" position="-7 1.037 16" material="" geometry="width:6"></a-plane>
+        <a-plane src="#yellowT" height="2" width="40" rotation="-90 180 0" position="-7 1.037 36" material="" geometry="width:6"></a-plane>
+        
+        <!-- Turning road -->
+        <a-plane rotation="-90 180 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#4b4b4b" geometry="width:100;height:17" position="-42 1.037 26"></a-plane>
+        <a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:17;height:0.4" position="-1.811 1.037 25.9"></a-plane>
+        <a-plane rotation="-90 90 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:17;height:0.4" position="-11 1.037 25.95"></a-plane>
+        <a-plane rotation="-89.99999879258174 -1.4067567064073092 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:11;height:0.4" position="3.61984743952216 1.037 34.82911699308146"></a-plane>
+        <a-plane rotation="-89.99999879258174 -1.4067567064073092 0" width="50" height="30" repeat="10 10" material="depthTest:false;color:#ffffff" geometry="width:11;height:0.4" position="3.61984743952216 1.037 38.336467634088265"></a-plane>
+        
+        <!-- Traffic light -->
+        <a-entity gltf-model="#human_light" scale="0.06 0.03 0.04" position="-3 1 16" animation-mixer="" rotation="0 -94 0"></a-entity>
+        <a-entity gltf-model="#human_light" scale="0.06 0.03 0.04" position="-10 1 36" animation-mixer="" rotation="0 92 0"></a-entity>
+        <a-entity gltf-model="#car_light" scale="1.8 1.5 1" position="2.2 1.03 19.3" rotation="-0.09 10 0.5"></a-entity>        
+        
+        <!-- Building -->
+        <a-entity gltf-model="images/skyscrapers/scene.gltf" scale="0.234 0.211 0.335" position="47.68449016549322 1.037 -32.591" rotation="0 -6.701 0"></a-entity>
+        <a-entity gltf-model="images/skyscrapers/scene.gltf" scale="0.234 0.211 0.335" position="47.68449016549322 1.037 -32.591" rotation="0 -6.701 0"></a-entity>
+
+        <!-- trees -->
+        <!-- RIGHT-->
+        <a-entity gltf-model="#tree" id="parent" position="18 0 -15" scale="0.04 0.04 0.04" rotation="0 40 0">
+            <a-entity gltf-model="#tree" id="right"></a-entity>
+            <a-entity gltf-model="#tree" id="right1" position="-450 0 600"></a-entity>
+            <a-entity gltf-model="#tree" id="right1" position="-300 0 400"></a-entity>
+            <a-entity gltf-model="#tree" id="right1" position="-150 0 200"></a-entity>
+            <a-entity gltf-model="#tree" id="right1" position="0 0 0"></a-entity>
+            <a-entity gltf-model="#tree" id="right1" position="150 0 -200"></a-entity>
+            <a-entity gltf-model="#tree" id="right2" position="300 0 -400"></a-entity>
+            <a-entity gltf-model="#tree" id="right3" position="450 0 -600"></a-entity>
+            <a-entity gltf-model="#tree" id="right4" position="600 0 -800"></a-entity>
+            <a-entity gltf-model="#tree" id="right5" position="750 0 -1000"></a-entity>
+        </a-entity>
+        <!-- LEFT -->
+        <a-entity gltf-model="#tree" id="parent" position="-18 0 45" scale="0.04 0.04 0.04" rotation="0 40 0">
+            <a-entity gltf-model="#tree" id="left"></a-entity>
+            <a-entity gltf-model="#tree" id="left2" position="-300 0 400"></a-entity>
+            <a-entity gltf-model="#tree" id="left3" position="-450 0 600"></a-entity>
+            <a-entity gltf-model="#tree" id="left4" position="-600 0 800"></a-entity>
+            <a-entity gltf-model="#tree" id="left5" position="-750 0 1000"></a-entity>
+            <a-entity gltf-model="#tree" id="left5" position="-900 0 1200"></a-entity>
+            <a-entity gltf-model="#tree" id="left5" position="-1050 0 1400"></a-entity>
+        </a-entity>
+
+        <!-- Extra decorations -->
+        <a-entity gltf-model="#busStop" scale="1.9 1.9 2.5" position="-8 0.63 60" rotation="0 178 0"></a-entity>        
+        <a-entity gltf-model="#girl" position="-6 0.4 62.2" scale="0.057 0.056 0.058" light="angle:70;type:point;intensity:3;color:#ffffff"></a-entity>
+        <a-entity gltf-model="#boi" position="-6 0.4 59" scale="0.057 0.056 0.058"></a-entity>
+
+        <!-- lamppost -->
+        <!-- RIGHT -->
+        <a-entity gltf-model="#lamppost" id="parent" position="14 6 -9" scale="0.6 1.8 1.5" rotation="-90 0 0">
+            <a-entity gltf-model="#lamppost" id="right"></a-entity>
+            <a-entity gltf-model="#lamppost" id="right1" position="0 5 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="right2" position="0 10 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="right3" position="0 15 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="right4" position="0 20 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="right5" position="0 25 0"></a-entity>
+        </a-entity>
+        
+        <!-- LEFT -->
+        <a-entity gltf-model="#lamppost" id="parent" position="-12 6 50" scale="0.6 1.8 1.5" rotation="-90 0 0">
+            <a-entity gltf-model="#lamppost" id="left"></a-entity>
+            <a-entity gltf-model="#lamppost" id="left1" position="0 -5 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="left2" position="0 -10 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="left3" position="0 -15 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="left4" position="0 -20 0"></a-entity>
+            <a-entity gltf-model="#lamppost" id="left5" position="0 -25 0"></a-entity>
+        </a-entity>
+		
+        <!-- Bicycle -->
+        <a-entity>
+            <a-entity gltf-model="#cyclist" scale="7 4.5 7" position="0 1 0" rotation="0 -90 0">
+                <a-animation attribute ="position"
+                    dur="12000" from="-1 -6 100" to="-2 -6 50"
+                    repeat="indefinite"></a-animation>
+            </a-entity>
+            <a-text value="YOLO" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+                    <a-animation attribute ="position"
+                    dur="12000" from="3 5 100" to="3 5 -50"
+                    repeat="indefinite"></a-animation>
+            </a-text>
+        </a-entity>
+
+
+		<!-- Walking man-->
+		<a-entity gltf-model="#hi_man" position="0 1 0" rotation="0 -108 0" scale="1.7 1.4 1.1">
+		<a-animation attribute ="position"
+				dur="50000" from="-3.5 1.037 -100" to="-3.5 1.037 100"
+				repeat="indefinite"></a-animation>
+        </a-entity>
+        <a-entity gltf-model="#old_man" position="-3.8 1.2 -49" rotation="0 164 0" scale="-0.012 0.011 -0.009">
+            <a-animation attribute="position" 
+            dur="60000" from="-3 1.037 -90" to="-3 1.037 100" 
+            repeat="indefinite"></a-animation>
+        </a-entity>
+        <a-entity gltf-model="#old_man" position="-3.8 1.2 -49" rotation="0 164 0" scale="-0.012 0.011 -0.009">
+            <a-animation attribute="position" 
+            dur="70000" from="-8 1.037 0" to="-8 1.037 100" 
+            repeat="indefinite"></a-animation>
+        </a-entity>
+        
+        <!-- Moving car -->
+		<a-entity gltf-model="#car" position="6 0 -90" scale="0.01 0.015 0.012" rotation="0 -90 0">
+            <a-animation attribute ="position"
+                dur="10000" from="8 1 100" to="8 0 -100"
+                repeat="indefinite"></a-animation>
+        </a-entity>
+
+      
+        <a-entity gltf-model="#car3" scale="0.01 0.015 0.012">
+            <a-animation attribute ="position"
+                dur="12000" from="5 1 100" to="0 1 50"
+                repeat="indefinite"></a-animation>
+        </a-entity>
+
+        <a-text value="Hey, keep left!" geometry="primitive:plane;height:0.5;width:4" text="align:center">
+                <a-animation attribute ="position"
+                dur="12000" from="4 4 100" to="0 4 50"
+                repeat="indefinite"></a-animation>
+        </a-text>
+
+        <a-text value="BANG!!!" geometry="primitive:plane;height:1.5;width:6" visible="false" text="width:35;align:center;color:#ff0000;transparent:false" position="1.3 4 43">
+                <a-animation position="0.06 4 51" scale="1.58 1.2 1" attribute="visible" dur="12000" to="true" repeat="indefinite"></a-animation>            
+        </a-text>
+
+		<!-- Camera + cursor -->
+		<a-camera position="0 3 100" wasd-controls="acceleration: 200">
+			<a-cursor color="#000000" fuse-timeout="10">
+			</a-cursor>
+			<a-entity id="vehicle" gltf-model="" scale="0.01 0.007 0.01" rotation="2 -90 -4" position="-0.64 -3.5 0.6"></a-entity>
+			
+		</a-camera>
+		
+    </a-scene>
+	
+	<script>
+	var vehicle = document.querySelector('#vehicle');
+	vehicle.setAttribute('gltf-model', localStorage.getItem("vehicleSelected"));
+	</script>
+  </body>
+</html>
